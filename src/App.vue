@@ -6,6 +6,7 @@
   onMounted(() => {
     particleLine({
       id: 'canvas',
+      count: 200
     })
   });
 </script>

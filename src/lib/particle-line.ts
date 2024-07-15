@@ -1,7 +1,7 @@
 
 
-export function particleLine(params: { id: string }) {
-  const { id } = params;
+export function particleLine(params: { id: string, count?: number }) {
+  const { id, count = 100 } = params;
   const canvas = document.getElementById(id) as HTMLCanvasElement;
   const ctx = canvas.getContext('2d')!
 
@@ -10,7 +10,7 @@ export function particleLine(params: { id: string }) {
   canvas.height = height;
 
   const particles: any[] = [];
-  const particleCount = 100; // 粒子数量
+  const particleCount = count; // 粒子数量
   const particleSpeed = 0.5; // 粒子速度
   const particleSize = 1; // 粒子大小
   const connectionDistance = 100; // 粒子连接距离
