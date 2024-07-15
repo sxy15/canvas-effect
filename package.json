@@ -1,5 +1,6 @@
 {
   "name": "canvas-effect",
+  "description": "A canvas effect library",
   "private": false,
   "version": "0.0.4",
   "type": "module",
@@ -8,6 +9,7 @@
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "homepage": "https://github.com/sxy15/canvas-effect",
   "scripts": {
     "prepare": "npm run build",
     "dev": "vite",
