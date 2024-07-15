@@ -1,4 +1,49 @@
+class Particle {
+  _w: number;
+  _h: number;
+  _speed: number;
+  _size: number;
+  _ctx: CanvasRenderingContext2D;
+  x: number;
+  y: number;
+  angle: number;
+  speed: number;
+  opacity: number;
 
+  constructor(
+    { width, height, speed, size, ctx} : 
+    { width: number, height: number, speed: number, size: number, ctx: CanvasRenderingContext2D }) {
+    this.x = Math.random() * width;
+    this.y = Math.random() * height;
+    this.angle = Math.random() * 2 * Math.PI;
+    this.speed = Math.random() * speed;
+    this.opacity = Math.random() * 0.5 + 0.5;
+
+    this._w = width;
+    this._h = height;
+    this._speed = speed;
+    this._size = size;
+    this._ctx = ctx;
+  }
+
+  update() {
+    this.x += Math.cos(this.angle) * this.speed;
+    this.y += Math.sin(this.angle) * this.speed;
+
+    if (this.x < 0 || this.x > this._w || this.y < 0 || this.y > this._h) {
+      this.x = Math.random() * this._w;
+      this.y = Math.random() * this._h;
+    }
+  }
+
+  draw() {
+    const ctx = this._ctx;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this._size, 0, 2 * Math.PI);
+    ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+    ctx.fill();
+  }
+}
 
 export function particleLine(params: { id: string, count?: number }) {
   const { id, count = 100 } = params;
@@ -17,42 +62,15 @@ export function particleLine(params: { id: string, count?: number }) {
   const connectionOpacity = 0.5; // 粒子连接透明度
   const connectionLineColor = '255, 255, 255'; // 线条颜色
 
-  class Particle {
-    x: number;
-    y: number;
-    angle: number;
-    speed: number;
-    opacity: number;
-
-    constructor() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.angle = Math.random() * 2 * Math.PI;
-      this.speed = Math.random() * particleSpeed;
-      this.opacity = Math.random() * 0.5 + 0.5;
-    }
-
-    update() {
-      this.x += Math.cos(this.angle) * this.speed;
-      this.y += Math.sin(this.angle) * this.speed;
-
-      if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-      }
-    }
-
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, particleSize, 0, 2 * Math.PI);
-      ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-      ctx.fill();
-    }
-  }
-
   function createParticles() {
     for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
+      particles.push(new Particle({
+        width,
+        height,
+        speed: particleSpeed,
+        size: particleSize,
+        ctx
+      }));
     }
   }
 
