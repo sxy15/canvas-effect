@@ -15,7 +15,7 @@
     "build": "vite build -c vite.lib.config.ts && tsc -p tsconfig.lib.json"
   },
   "dependencies": {
-    "canvas-effect": "^0.0.0",
+    "canvas-effect": "^0.0.1",
     "vue": "^3.4.29"
   },
   "devDependencies": {

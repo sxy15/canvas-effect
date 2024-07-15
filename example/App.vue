@@ -1,7 +1,6 @@
 <script setup lang="ts">
   import { onMounted } from 'vue';
-  import { particleLine } from '../lib/particle-line'
-
+  import { particleLine } from '../lib/index'
 
   onMounted(() => {
     particleLine({
