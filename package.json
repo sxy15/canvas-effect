@@ -3,9 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "files": ["dist"],
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build -c vite.lib.config.ts"
+    "build": "vite build -c vite.lib.config.ts && tsc -p tsconfig.lib.json"
   },
   "dependencies": {
     "vue": "^3.4.29"

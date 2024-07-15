@@ -11,7 +11,7 @@ export default defineConfig({
       output: {
         preserveModules: true,
         preserveModulesRoot: 'lib',
-        exports: 'named',
+        exports: 'named'
       }
     }
   }
