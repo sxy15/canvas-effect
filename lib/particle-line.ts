@@ -3,6 +3,7 @@ class Particle {
   _h: number;
   _speed: number;
   _size: number;
+  _color: string;
   _ctx: CanvasRenderingContext2D;
   x: number;
   y: number;
@@ -11,8 +12,8 @@ class Particle {
   opacity: number;
 
   constructor(
-    { width, height, speed, size, ctx} : 
-    { width: number, height: number, speed: number, size: number, ctx: CanvasRenderingContext2D }) {
+    { width, height, speed, size, color, ctx} : 
+    { width: number, height: number, speed: number, size: number, color: string, ctx: CanvasRenderingContext2D }) {
     this.x = Math.random() * width;
     this.y = Math.random() * height;
     this.angle = Math.random() * 2 * Math.PI;
@@ -24,6 +25,7 @@ class Particle {
     this._speed = speed;
     this._size = size;
     this._ctx = ctx;
+    this._color = color;
   }
 
   update() {
@@ -45,8 +47,8 @@ class Particle {
   }
 }
 
-export function particleLine(params: { id: string, count?: number }) {
-  const { id, count = 100 } = params;
+export function particleLine(params: { id: string, count?: number, color?: string }) {
+  const { id, count = 100, color = '255, 255, 255' } = params;
   const canvas = document.getElementById(id) as HTMLCanvasElement;
   const ctx = canvas.getContext('2d')!
 
@@ -60,7 +62,7 @@ export function particleLine(params: { id: string, count?: number }) {
   const particleSize = 1; // 粒子大小
   const connectionDistance = 100; // 粒子连接距离
   const connectionOpacity = 0.5; // 粒子连接透明度
-  const connectionLineColor = '255, 255, 255'; // 线条颜色
+  const connectionLineColor = color; // 线条颜色
 
   function createParticles() {
     for (let i = 0; i < particleCount; i++) {
@@ -69,6 +71,7 @@ export function particleLine(params: { id: string, count?: number }) {
         height,
         speed: particleSpeed,
         size: particleSize,
+        color: color,
         ctx
       }));
     }

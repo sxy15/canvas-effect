@@ -5,6 +5,7 @@
   onMounted(() => {
     particleLine({
       id: 'canvas',
+      color: '255, 0, 0',
       count: 200
     })
   });
@@ -21,7 +22,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000;
+  background-color: #ffffff;
   z-index: -1;
 }
 </style>
